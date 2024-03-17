@@ -5,7 +5,7 @@ chrome_options = Options()
 chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(options=chrome_options)
 
-driver.get("index.html")  
+driver.get("file:///var/lib/jenkins/workspace/selniumtest/index.html")  
 
 try:
     # Find the input elements
