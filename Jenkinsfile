@@ -4,8 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your source code repository
-                git 'https://github.com/ManasDe2/selnium.git'
+                 checkout scm
             }
         }
         
