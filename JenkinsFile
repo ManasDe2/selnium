@@ -8,6 +8,7 @@ pipeline {
                 git 'https://github.com/your/repository.git'
             }
         }
+        
         stage('Test') {
             steps {
                 // Run Selenium testing script
