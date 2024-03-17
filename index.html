@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Addition</title>
+</head>
+<body>
+    <h1>Simple Addition</h1>
+    <input id="input1" type="number" placeholder="Enter number 1">
+    <br>
+    <input id="input2" type="number" placeholder="Enter number 2">
+    <br>
+    <button id="submit" onclick="addNumbers()">Add</button>
+    <p id="output"></p>
+
+    <script>
+        function addNumbers() {
+            var num1 = parseInt(document.getElementById('input1').value);
+            var num2 = parseInt(document.getElementById('input2').value);
+            var result = num1 + num2;
+            document.getElementById('output').innerHTML = "Result: " + result;
+        }
+    </script>
+</body>
+</html>
