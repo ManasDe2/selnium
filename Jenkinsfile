@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                 checkout scm
+                checkout scm
             }
         }
         
         stage('Test') {
             steps {
-                
-                def output = sh(script: 'python3 test.py', returnStdout: true).trim()
+                script {
+                    def output = sh(script: 'python3 test.py', returnStdout: true).trim()
                     println "Output of test.py: ${output}"
                     
                     if (output.contains('Passed')) {
@@ -19,8 +19,10 @@ pipeline {
                     } else {
                         currentBuild.result = 'FAILURE'
                     }
+                }
             }
         }
+        
         stage('Deployment') {
             when {
                 expression {
@@ -29,8 +31,10 @@ pipeline {
                 }
             }
             steps {
-                sh 'sudo -S cp -r ./*.html /var/www/html/'
-                sh 'sudo -S systemctl restart nginx'
+                script {
+                    sh 'sudo -S cp -r ./*.html /var/www/html/'
+                    sh 'sudo -S systemctl restart nginx'
+                }
             }
         }
     }
