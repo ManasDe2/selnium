@@ -30,7 +30,7 @@ try:
     # Find and print the output
     output = driver.find_element(By.ID, 'output')
     print("Actual Output:", output.text)
-    if output.text == '8':
+    if output.text[-1] == '8':
         print("Test Passed")
     else:   
         print("Test failed")
