@@ -29,11 +29,11 @@ try:
 
     # Find and print the output
     output = driver.find_element(By.ID, 'output')
-    if output.text == 8:
+    print("Actual Output:", output.text)
+    if output.text == '8':
         print("Test Passed")
     else:   
         print("Test failed")
-    print("Result:", output.text)
 
 finally:
     # Close the browser
