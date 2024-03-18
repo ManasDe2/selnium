@@ -10,8 +10,27 @@ pipeline {
         
         stage('Test') {
             steps {
-                // Run Selenium testing script
-                sh 'python3 test.py'
+                
+                def output = sh(script: 'python3 test.py', returnStdout: true).trim()
+                    println "Output of test.py: ${output}"
+                    
+                    if (output.contains('Passed')) {
+                        currentBuild.result = 'SUCCESS'
+                    } else {
+                        currentBuild.result = 'FAILURE'
+                    }
+            }
+        }
+        stage('Deployment') {
+            when {
+                expression {
+                    // Only run the Deployment stage if the Test stage was successful
+                    return currentBuild.result == 'SUCCESS'
+                }
+            }
+            steps {
+                sh 'sudo -S cp -r ./*.html /var/www/html/'
+                sh 'sudo -S systemctl restart nginx'
             }
         }
     }

@@ -29,6 +29,10 @@ try:
 
     # Find and print the output
     output = driver.find_element(By.ID, 'output')
+    if output.text == "8":
+        print("Test Passed")
+    else:   
+        print("Test failed")
     print("Result:", output.text)
 
 finally:
