@@ -22,7 +22,22 @@ pipeline {
                 }
             }
         }
-        
+        stage('Create Image'){
+            steps {
+                script {
+                    sh 'docker build -t my-apache2 .'
+                    echo 'Image built'
+                }
+            }
+        }
+        stage('Container run'){
+            steps {
+                script {
+                    sh 'docker run -dit --name my-running-app -p 3000:80 my-apache2'
+                    echo 'Image built'
+                }
+            }
+        }
         stage('Deployment') {
             when {
                 expression {
